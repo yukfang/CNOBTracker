@@ -70,7 +70,12 @@ async function buildBody(detail, tag){
     const title = detail.title
 
     /** Plat_id */
-    const plat_id = detail.plat_id;
+    const plat_id_map = {
+        "1701962904795138": "Delivery",
+        "1681100484057089": "Measurement"
+    }
+
+    const plat_id = plat_id_map[detail.plat_id] || detail.plat_id;
 
     /** ADV ID */
     const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop()?.content?.toString();
