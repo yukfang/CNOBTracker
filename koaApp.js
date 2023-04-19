@@ -73,7 +73,7 @@ async function buildBody(detail, tag){
     const plat_id = detail.plat_id;
 
     /** ADV ID */
-    const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop().content.toString();
+    const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop()?.content?.toString();
     // if(detail.id == '1031013') {
     //     console.log(`adv_id: `)
     //     console.log(detail.items.filter(r=> r.label.includes('Ad Account ID')).pop().content.toString())
@@ -83,7 +83,7 @@ async function buildBody(detail, tag){
     const regionLables = [
         'Region', 'Country / Region', 'Client Region', 'Country/Region', 'GBS Country/Region', "GBS Country / Region"
     ]
-    const country = detail.items.filter(r => regionLables.includes(r.label)).pop().content;
+    const country = detail.items.filter(r => regionLables.includes(r.label)).pop()?.content;
 
 
     /** Current Follower */
