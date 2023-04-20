@@ -66,16 +66,21 @@ async function buildBody(detail, tag){
     /** Client Name */
     const client = ''
 
-    /** Title */
-    const title = detail.title
+
 
     /** Plat_id */
     const plat_id_map = {
         "1701962904795138": "Delivery",
         "1681100484057089": "Measurement"
     }
-
     const plat_id = plat_id_map[detail.plat_id] || detail.plat_id;
+
+
+    /** Title */
+    const title = detail.title
+    /** Issue Desc */
+    const issue_desc = detail.items.filter(r=> r.label.includes('Issue Description')).pop()?.content?.toString();
+
 
     /** ADV ID */
     const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop()?.content?.toString();
@@ -83,13 +88,6 @@ async function buildBody(detail, tag){
     //     console.log(`adv_id: `)
     //     console.log(detail.items.filter(r=> r.label.includes('Ad Account ID')).pop().content.toString())
     // }
-
-    /** Country */
-    const regionLables = [
-        'Region', 'Country / Region', 'Client Region', 'Country/Region', 'GBS Country/Region', "GBS Country / Region"
-    ]
-    const country = detail.items.filter(r => regionLables.includes(r.label)).pop()?.content;
-
 
     /** Current Follower */
     const follower = detail.follower;
@@ -114,8 +112,8 @@ async function buildBody(detail, tag){
         adv_id,
         gbs_name,
         title,
+        issue_desc,
         status,
-        country,
         follower,
         create_time,
         close_time,
