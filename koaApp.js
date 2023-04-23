@@ -70,11 +70,13 @@ async function buildBody(detail, tag){
 
     /** Plat_id */
     const plat_id_map = {
-        "1701962904795138": "Delivery",
-        "1681100484057089": "Measurement"
+        "1701962904795138": "Measurement" ,
+        "1681100484057089":  "Delivery"
     }
-    const plat_id = plat_id_map[detail.plat_id] || detail.plat_id;
+    const plat_id = plat_id_map[detail.plat_id] || (''+detail.plat_id);
 
+    /** archive_category_1_name */
+    const archive_category_1_name = detail.archive_category_1_name
 
     /** Title */
     const title = detail.title
@@ -107,7 +109,7 @@ async function buildBody(detail, tag){
     /** Return to request */
     return JSON.stringify({
         refresh: (new Date(Date.now())).toISOString().substring(0,19) + 'Z',
-        plat_id,
+        archive_category_1_name,
         client,
         adv_id,
         gbs_name,
