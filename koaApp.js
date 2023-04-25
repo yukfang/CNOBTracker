@@ -66,30 +66,17 @@ async function buildBody(detail, tag){
     /** Client Name */
     const client = ''
 
-
-
-    /** Plat_id */
-    const plat_id_map = {
-        "1701962904795138": "Measurement" ,
-        "1681100484057089":  "Delivery"
-    }
-    const plat_id = plat_id_map[detail.plat_id] || (''+detail.plat_id);
-
     /** archive_category_1_name */
-    const archive_category_1_name = detail.archive_category_1_name
+    const archive_category_1_name = detail.archive_category_1_name || ''
 
     /** Title */
     const title = detail.title
-    /** Issue Desc */
-    const issue_desc = detail.items.filter(r=> r.label.includes('Issue Description')).pop()?.content?.toString();
 
+    /** Issue Desc */
+    const issue_desc = detail.items.filter(r=> (r.label.includes('Issue Description') || r.label.includes('详情解释'))).pop()?.content?.toString();
 
     /** ADV ID */
     const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop()?.content?.toString();
-    // if(detail.id == '1031013') {
-    //     console.log(`adv_id: `)
-    //     console.log(detail.items.filter(r=> r.label.includes('Ad Account ID')).pop().content.toString())
-    // }
 
     /** Current Follower */
     const follower = detail.follower;
