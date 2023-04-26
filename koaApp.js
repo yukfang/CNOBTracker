@@ -73,7 +73,10 @@ async function buildBody(detail, tag){
     const title = detail.title
 
     /** Issue Desc */
-    const issue_desc = detail.items.filter(r=> (r.label.includes('Issue Description') || r.label.includes('详情解释'))).pop()?.content?.toString();
+    const issue_desc = detail.items.filter(r=> (r.label.includes('Issue Description')
+                                             || r.label.includes('详情解释')
+                                             || r.label.includes('Issue Summary')) // e.g. 1166296
+                                          ).pop()?.content?.toString();
 
     /** ADV ID */
     const adv_id = detail.items.filter(r=> r.label.includes('Ad Account ID')).pop()?.content?.toString();
