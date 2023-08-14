@@ -24,7 +24,7 @@ koaApp.use(async (ctx, next) => {
 
 koaApp.use(async (ctx, next) => {
     if (ctx.path === '/data') {
-        let order_id = `${ctx.query.order_id}`
+        let order_id = `${ctx.query.order_id}`.trim()
 
         // const tag = await getOrderTag(order_id);
         // const detail = await getOrderDetail(order_id);
